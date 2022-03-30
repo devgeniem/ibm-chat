@@ -1,0 +1,426 @@
+@import "~hds-core/lib/base.css";
+@import "~hds-design-tokens/lib/all";
+@import "breakpoints";
+
+$color-grey: #f2f2f2;
+
+.chat {
+    &-open,
+    &-closed {
+        .site-footer {
+            padding-bottom: $spacing-layout-xl;
+        }
+    }
+}
+
+.sr-only {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    white-space: nowrap;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+}
+
+.nuhe-chat {
+    z-index: 9999999999;
+}
+
+.nuhe-chat-lobby {
+    position: fixed;
+    bottom: 0;
+    display: none;
+    overflow-y: auto;
+    width: 44rem;
+    max-width: 100%;
+    max-height: 100%;
+    background-color: $color-white;
+
+    @include breakpoint(m) {
+        right: $spacing-layout-l;
+    }
+
+    &__body {
+        padding: $spacing-m $spacing-l $spacing-xl;
+
+        .chat-closed & {
+            padding: $spacing-2-xl $spacing-xl;
+        }
+    }
+}
+
+.nuhe-chat-lobby-title,
+.gwc-chat-title {
+    font-size: $fontsize-heading-xs;
+    font-weight: bold;
+    margin: 0;
+}
+
+.nuhe-chat-topic-title {
+    font-size: $fontsize-body-s;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: $spacing-s;
+
+    &--closed {
+        margin-bottom: 0;
+    }
+
+    &--mt {
+        margin-top: $spacing-s;
+    }
+
+    .chat-open &--closed {
+        display: none;
+    }
+
+    .chat-closed &--open {
+        display: none;
+    }
+}
+
+.nuhe-chat-topics-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+
+    &--mt {
+        margin-top: $spacing-s;
+    }
+
+    .chat-closed & {
+        display: none;
+    }
+
+    li {
+        margin-right: $spacing-2-xs;
+        margin-bottom: $spacing-2-xs;
+
+        .hds-button {
+            color: $color-black;
+            border-color: transparent;
+
+            &:hover,
+            &:focus,
+            &:focus:hover {
+                color: $color-black;
+                border-color: transparent;
+            }
+
+            &--fog {
+                background-color: $color-fog;
+
+                &:hover {
+                    background-color: $color-fog-dark;
+                }
+
+                &:focus {
+                    outline-color: $color-fog-dark;
+                }
+            }
+
+            &--suomenlinna {
+                background-color: $color-suomenlinna;
+
+                &:hover {
+                    background-color: $color-suomenlinna-dark;
+                }
+
+                &:focus {
+                    outline-color: $color-suomenlinna-dark;
+                }
+            }
+
+            &--engel {
+                background-color: $color-engel;
+
+                &:hover {
+                    background-color: $color-engel-dark;
+                }
+
+                &:focus {
+                    outline-color: $color-engel-dark;
+                }
+            }
+        }
+    }
+}
+
+.nuhe-chat-footer {
+    margin-top: $spacing-m;
+
+    @include breakpoint(s) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            width: 55%;
+        }
+
+        img {
+            width: 40%;
+        }
+    }
+
+    .chat-closed & {
+        display: none;
+    }
+}
+
+.nuhe-chat-open-wrapper {
+    position: fixed;
+    bottom: 0;
+    display: none;
+
+    &--sv {
+        display: block;
+    }
+
+    @include breakpoint(s) {
+        right: $spacing-layout-l;
+    }
+
+    &,
+    .nuhe-chat-open-btn {
+        width: 100%;
+
+        @include breakpoint(s) {
+            width: auto;
+        }
+    }
+}
+
+.nuhe-chat-open-btn {
+    justify-content: space-between !important;
+    padding: $spacing-s $spacing-l !important;
+    text-align: left;
+
+    .hds-button__label + span {
+        margin: 0 0 0 1.5rem !important;
+    }
+    
+
+    &__label {
+        font-size: $fontsize-heading-xs;
+        font-weight: 700 !important;
+        padding: 0 !important;
+    }
+}
+
+.nuhe-chat-lobby__header,
+.gwc-chat-head {
+    display: flex;
+    align-items: center;
+    padding: $spacing-s $spacing-l;
+    color: $color-white;
+    background-color: $color-bus;
+
+    .hds-icon:last-child,
+    .chat-controls {
+        margin-left: auto;
+    }
+}
+
+.gwc-chat {
+    div,
+    textarea {
+        font-family: $font-default;
+        font-size: $fontsize-body-m;
+        line-height: $lineheight-l;
+        color: $color-black-90;
+    }
+
+    .gwc-chat-message-time {
+        font-size: $fontsize-body-s;
+        position: absolute;
+        right: $spacing-s !important;
+        bottom: 10px;
+        color: #595959;
+    }
+}
+
+.gcb-startBtnsContainer {
+    display: none !important;
+}
+
+.gwc-chat-embedded-window {
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: $color-grey;
+    border-width: 0;
+
+    @include breakpoint(s) {
+        right: $spacing-layout-l;
+        width: 31rem;
+        height: auto;
+    }
+}
+
+.gwc-chat-body {
+    background: $color-grey;
+}
+
+.chat-auth-btn {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    padding: $spacing-s;
+    color: $color-black;
+    text-align: center;
+    background-color: $color-coat-of-arms-medium-light;
+}
+
+.gwc-chat-message-container {
+    right: 0;
+    left: 0;
+    padding: 0 $spacing-m;
+    background: transparent;
+    border-width: 0;
+}
+
+.gwc-chat-message-form {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: $spacing-s $spacing-m;
+    background-color: $color-white;
+}
+
+.gwc-chat-message-input {
+    height: auto !important;
+    padding: 0;
+    border-width: 0 !important;
+}
+
+.gwc-send-message {
+    align-self: center;
+    margin-left: $spacing-m;
+
+    .hds-icon {
+        margin-left: 0 !important;
+    }
+}
+
+.gwc-chat-content-area {
+    padding: 0;
+}
+
+.gwc-chat-message {
+    position: relative;
+    margin-bottom: $spacing-m;
+    padding: $spacing-m $spacing-s;
+    border-radius: $spacing-s;
+
+    &:after {
+        content: " ";
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+
+    &--agent,
+    &--system {
+        margin-right: $spacing-m;
+        background-color: $color-white;
+
+        &:after {
+            top: $spacing-m;
+            left: -8px;
+            border-top: 10px solid transparent;
+            border-right: 10px solid $color-white; 
+            border-bottom: 10px solid transparent; 
+        }
+    }
+
+    &--user {
+        margin-left: $spacing-m;
+        background-color: $color-fog-medium-light;
+
+        &:after {
+            right: -8px;
+            bottom: 10px;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 8px solid $color-fog-medium-light;
+        }
+    }
+}
+
+.gwc-chat-message-author {
+    display: none !important;
+}
+
+.chat-controls {
+    &__btn {
+        background: transparent;
+        border-width: 0;
+        cursor: pointer;
+
+        &--hidden {
+            display: none;
+        }
+
+        span {
+            color: $color-white;
+        }
+    }
+}
+
+.chat-status-indicator {
+    position: relative;
+    width: 39px;
+    height: 39px;
+    margin-right: 1rem;
+    color: $color-black;
+    border-radius: 50%;
+
+    .chat-open & {
+        background-color: $color-copper;
+    }
+
+    .chat-closed & {
+        background-color: $color-brick-medium-light;
+    }
+
+    span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 24px;
+        height: 24px;
+        margin: 0 !important;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.grow-wrap {
+    display: grid;
+    width: 100%;
+
+    &::after {
+        content: attr(data-replicated-value) " ";
+        white-space: pre-wrap;
+        visibility: hidden;
+    }
+  
+    > textarea {
+        overflow: auto;
+        resize: none;
+    }
+
+    > textarea,
+    &::after {
+        max-height: 70px;
+        grid-area: 1 / 1 / 2 / 2;
+    }
+}
