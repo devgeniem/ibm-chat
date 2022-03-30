@@ -210,7 +210,7 @@ class ChatPlugin {
                 'home_url'         => home_url(),
                 'close_chat_text'  => 'Sulje chat',
                 'send_message'     => 'Lähetä viesti',
-                'is_production'    => WP_ENV === 'production',
+                'is_production'    => true,
             ];
     
             \wp_localize_script( 'nuhe_chat-public-js', 'chatData', $localized_data );
@@ -328,10 +328,6 @@ class ChatPlugin {
      * Get chat status
      */
     private static function get_chat_status() {
-        if ( WP_ENV !== 'production' ) {
-            return 'open';
-        }
-
         $chatApiBaseUrl = 'https://asiointi.hel.fi/chat/kanslia/AvailabilityInfo/Query/terke/NUORTEN_CHAT_';
         $chatStatusUrls = [
             "{$chatApiBaseUrl}TERVEYSASIAT",
